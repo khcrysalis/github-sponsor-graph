@@ -1,4 +1,4 @@
-name: run 
+name: run
 
 on:
   workflow_dispatch:
@@ -12,10 +12,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up Node.js 20
+      - name: Set up Node.js 23
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: "23"
+
+      - name: Install system dependencies for canvas
+        run: |
+          brew update
+          brew install pkg-config cairo pango libpng jpeg giflib librsvg
 
       - name: Install pnpm
         run: |
@@ -35,4 +40,4 @@ jobs:
           default_author: github_actor
           message: "chore: update certificate"
           add: |
-           - graph.png
+            - graph.png
