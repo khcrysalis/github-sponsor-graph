@@ -7,20 +7,18 @@ on:
 
 jobs:
   build:
-    runs-on: macos-13
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev librsvg2-dev
 
       - name: Set up Node.js 23
         uses: actions/setup-node@v3
         with:
           node-version: "23"
-
-      - name: Install system dependencies for canvas
-        run: |
-          brew update
-          brew install pkg-config cairo pango libpng jpeg giflib librsvg
 
       - name: Install pnpm
         run: |
