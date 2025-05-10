@@ -93,7 +93,7 @@ async function fetchDonorPfps(username, after = null) {
     } = data.user.sponsors;
 
     const avatarUrls = nodes
-        .filter(n => includePrivate || n.sponsorshipForViewerAsSponsorable.privacyLevel === "PUBLIC")
+        .filter(n => includePrivate || n.sponsorshipForViewerAsSponsorable?.privacyLevel === "PUBLIC")
         .map(n => n.avatarUrl);
 
     if (hasNextPage) {
